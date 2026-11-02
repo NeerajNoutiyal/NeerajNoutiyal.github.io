@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Neeraj Noutiyal — Computer Science student focused on software development, AI and machine learning, Python and cybersecurity.">
+<title>Neeraj Noutiyal | Developer Portfolio</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --site-primary: #2563EB;
+  --site-on-primary: #FFFFFF;
+  --site-secondary: #6D28D9;
+  --site-on-secondary: #FFFFFF;
+  --site-background: #080D19;
+  --site-on-background: #F4F7FF;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  --bg: light-dark(#F5F7FC, #080D19);
+  --surface: light-dark(#FFFFFF, #10182A);
+  --surface-2: light-dark(#EDF2FC, #151F35);
+  --text: light-dark(#111827, #F4F7FF);
+  --muted: light-dark(#5D687D, #A5B1C8);
+  --line: light-dark(#DFE6F1, #26334B);
+  --glow: color-mix(in srgb, var(--site-primary) 22%, transparent);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--site-font-body); }
+button, a { font: inherit; }
+a { color: inherit; text-decoration: none; }
+#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: var(--site-background); color: var(--site-on-background); overflow: hidden; position: relative; }
+.container { width: min(1120px, calc(100% - 44px)); margin: 0 auto; }
+.decor { position: absolute; pointer-events: none; z-index: 0; opacity: var(--site-decoration-opacity); filter: blur(70px); border-radius: 50%; }
+.decor.one { width: 340px; height: 340px; background: #2563EB55; top: 80px; right: -130px; }
+.decor.two { width: 300px; height: 300px; background: #7C3AED38; top: 650px; left: -160px; }
+header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--site-background) 88%, transparent); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+.nav { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { font-weight: 850; letter-spacing: -.06em; font-size: 1.12rem; }
+.brand span { color: #60A5FA; }
+.navlinks { display: flex; gap: 27px; align-items: center; color: var(--muted); font-size: .88rem; }
+.navlinks a:hover { color: var(--text); }
+.nav-cta, .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 18px; border-radius: calc(13px * var(--site-radius-scale)); background: var(--site-primary); color: var(--site-on-primary); border: 1px solid transparent; font-weight: 700; transition: transform .2s, box-shadow .2s, background .2s; cursor: pointer; }
+.nav-cta:hover, .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px var(--glow); }
+.btn.secondary { background: transparent; color: var(--text); border-color: var(--line); }
+.menu-btn { display: none; background: transparent; border: 1px solid var(--line); color: var(--text); border-radius: 10px; padding: 9px 12px; }
+main, footer { position: relative; z-index: 1; }
+.hero { min-height: 650px; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 50px; padding: 88px 0 100px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); color: #93C5FD; border-radius: 99px; font-size: .78rem; font-weight: 700; letter-spacing: .04em; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #34D399; box-shadow: 0 0 12px #34D399; }
+h1,h2,h3 { font-family: var(--site-font-heading); margin: 0; letter-spacing: -.055em; }
+h1 { font-size: clamp(3.2rem, 7vw, 5.7rem); line-height: .99; margin: 25px 0 22px; }
+.gradient { background: linear-gradient(100deg, #60A5FA, #A78BFA 60%, #67E8F9); color: transparent; background-clip: text; -webkit-background-clip: text; }
+.hero-copy { color: var(--muted); max-width: 590px; font-size: 1.08rem; line-height: 1.85; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.social-row { display: flex; gap: 18px; margin-top: 30px; color: var(--muted); font-size: .9rem; }
+.social-row a:hover { color: #93C5FD; }
+.profile-card { background: linear-gradient(145deg, color-mix(in srgb, var(--surface) 95%, #2563EB 5%), var(--surface)); border: 1px solid var(--line); border-radius: calc(28px * var(--site-radius-scale)); padding: 28px; box-shadow: 0 25px 80px #0003; position: relative; }
+.profile-card:before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: linear-gradient(145deg, #60A5FA88, transparent 45%, #A78BFA66); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+.avatar { width: 100%; aspect-ratio: 1.15; border-radius: 20px; display: grid; place-items: center; background: radial-gradient(circle at 50% 35%, #284D88, #14213D 55%, #10182A); overflow: hidden; }
+.avatar-photo { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 24%; border-radius: 20px; box-shadow: 0 25px 70px #2563EB55; }
+.card-caption { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-top: 22px; }
+.card-caption strong { font-size: 1.05rem; }
+.card-caption span { color: var(--muted); font-size: .82rem; }
+.section { padding: 86px 0; }
+.section-head { margin-bottom: 35px; max-width: 680px; }
+.kicker { color: #60A5FA; text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 800; }
+h2 { font-size: clamp(2.1rem, 4vw, 3.2rem); margin-top: 12px; }
+.section-intro { color: var(--muted); line-height: 1.8; margin: 14px 0 0; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: calc(20px * var(--site-radius-scale)); padding: 27px; }
+.panel p { color: var(--muted); line-height: 1.85; margin: 12px 0 0; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fact { padding: 17px; background: var(--surface-2); border-radius: 14px; }
+.fact strong { display: block; font-size: 1.2rem; }
+.fact span { color: var(--muted); font-size: .8rem; }
+.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.skill { background: var(--surface); border: 1px solid var(--line); border-radius: 17px; padding: 20px; transition: transform .2s, border-color .2s; }
+.skill:hover { transform: translateY(-4px); border-color: #528BFA; }
+.skill-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: var(--surface-2); color: #93C5FD; font-weight: 850; margin-bottom: 15px; }
+.skill strong { display: block; }
+.skill small { color: var(--muted); display: block; margin-top: 6px; line-height: 1.5; }
+.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: calc(21px * var(--site-radius-scale)); overflow: hidden; transition: transform .22s, border-color .22s; }
+.project:hover { transform: translateY(-5px); border-color: #528BFA; }
+.project-visual { min-height: 170px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #14294D, #172044 60%, #30205A); }
+.project:nth-child(2) .project-visual { background: linear-gradient(135deg, #132F38, #152B45 55%, #282052); }
+.project:nth-child(3) .project-visual { background: linear-gradient(135deg, #34234D, #192747 55%, #123A50); }
+.project:nth-child(4) .project-visual { background: linear-gradient(135deg, #3A2B20, #1B2945 55%, #1C3C4C); }
+.project-symbol { width: 86px; height: 86px; border: 1px solid #FFFFFF44; background: #FFFFFF12; backdrop-filter: blur(10px); border-radius: 23px; display: grid; place-items: center; font-size: 2rem; font-weight: 900; color: #DBEAFE; box-shadow: 0 20px 60px #0003; }
+.project-content { padding: 23px; }
+.project-top { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+.project h3 { font-size: 1.28rem; letter-spacing: -.035em; }
+.project p { color: var(--muted); line-height: 1.7; font-size: .91rem; min-height: 72px; }
+.project-links { display: flex; gap: 16px; margin-top: 17px; font-size: .86rem; font-weight: 750; }
+.project-links a { color: #93C5FD; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+.tag { color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 99px; padding: 6px 9px; font-size: .72rem; }
+.timeline { border-left: 1px solid var(--line); margin-left: 8px; padding-left: 26px; display: grid; gap: 25px; }
+.timeline-item { position: relative; }
+.timeline-item:before { content: ""; position: absolute; left: -32px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 0 5px #2563EB22; }
+.timeline-item strong { display: block; font-size: 1rem; }
+.timeline-item span { color: #93C5FD; font-size: .82rem; }
+.timeline-item p { color: var(--muted); margin: 8px 0 0; line-height: 1.7; }
+.contact-box { background: linear-gradient(120deg, #142B50, #211B43); border: 1px solid #45639B; border-radius: 26px; padding: clamp(28px, 5vw, 55px); display: flex; justify-content: space-between; align-items: center; gap: 28px; }
+.contact-box p { color: #C4D2EA; max-width: 570px; line-height: 1.8; }
+.contact-box h2 { margin-top: 10px; }
+footer { border-top: 1px solid var(--line); padding: 25px 0; color: var(--muted); font-size: .84rem; }
+.footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { *, *:before, *:after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+@media (max-width: 850px) { .hero { grid-template-columns: 1fr .8fr; gap: 25px; } .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 680px) { .container { width: min(100% - 32px, 540px); } .nav { height: 68px; } .menu-btn { display: inline-flex; } .nav-cta { display: none; } .navlinks { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px; background: var(--site-background); border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 18px; } .navlinks.open { display: flex; } .hero { grid-template-columns: 1fr; padding: 70px 0 65px; min-height: auto; } h1 { font-size: clamp(3.2rem, 16vw, 5rem); } .profile-card { max-width: 420px; } .avatar { aspect-ratio: 1.55; } .section { padding: 65px 0; } .about-grid, .projects { grid-template-columns: 1fr; } .skills-grid { grid-template-columns: repeat(2, 1fr); } .contact-box { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 390px) { .skills-grid { grid-template-columns: 1fr 1fr; gap: 9px; } .skill { padding: 15px; } .hero-actions .btn { width: 100%; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="decor one"></div><div class="decor two"></div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home">NEERAJ<span>.</span></a>
+      <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#journey">Journey</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#contact">Let's connect <span>↗</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="container hero" id="home">
+      <div class="reveal">
+        <div class="eyebrow"><span class="dot"></span> OPEN TO LEARNING & OPPORTUNITIES</div>
+        <h1>Hi, I'm<br><span class="gradient">Neeraj Noutiyal.</span></h1>
+        <p class="hero-copy">I’m a Computer Science student focused on software development, Python, and Artificial Intelligence & Machine Learning. I enjoy turning ideas into useful, thoughtfully built digital solutions.</p>
+        <div class="hero-actions"><a class="btn" href="#projects">Explore my work <span>↘</span></a><a class="btn secondary" href="https://www.linkedin.com/in/neeraj-noutiyal-8302b12b2/" target="_blank" rel="noreferrer">Connect on LinkedIn ↗</a></div>
+        <div class="social-row"><a href="https://github.com/NeerajNoutiyal" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/neeraj-noutiyal-8302b12b2/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="#contact">Contact ↗</a></div>
+      </div>
+      <div class="profile-card reveal"><div class="avatar"><img class="avatar-photo" src="data:image/jpeg;base64,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" alt="Neeraj Noutiyal wearing a navy suit and glasses"></div><div class="card-caption"><div><strong>Building. Learning. Improving.</strong><br><span>Software • AI/ML • Security</span></div><span>IND 🇮🇳</span></div></div>
+    </section>
+    <section class="section" id="about"><div class="container">
+      <div class="section-head reveal"><div class="kicker">01 / About me</div><h2>Curious by nature.<br><span class="gradient">Builder by practice.</span></h2><p class="section-intro">I’m currently pursuing a B.Tech in Computer Science Engineering (AI & ML) at Amrapali University. I like learning by building projects, solving practical problems, and exploring how technology can make everyday workflows better.</p></div>
+      <div class="about-grid"><article class="panel reveal"><h3>A little about my approach</h3><p>I focus on strengthening my programming fundamentals while gaining hands-on experience with applications, databases, secure coding, and data processing. I value clean, understandable code and continuous improvement.</p></article><div class="facts reveal"><div class="fact"><strong>2024–2028</strong><span>B.Tech CSE (AI & ML)</span></div><div class="fact"><strong>Python</strong><span>Primary development focus</span></div><div class="fact"><strong>3+</strong><span>Featured project experiences</span></div><div class="fact"><strong>Always</strong><span>Learning and building</span></div></div></div>
+    </div></section>
+    <section class="section" id="skills"><div class="container">
+      <div class="section-head reveal"><div class="kicker">02 / Toolkit</div><h2>Technologies I work with.</h2><p class="section-intro">A growing toolkit for building software, working with data, and exploring intelligent systems.</p></div>
+      <div class="skills-grid">
+        <div class="skill reveal"><div class="skill-icon">Py</div><strong>Python</strong><small>Application development & scripting</small></div>
+        <div class="skill reveal"><div class="skill-icon">Ja</div><strong>Java</strong><small>Programming fundamentals</small></div>
+        <div class="skill reveal"><div class="skill-icon">C</div><strong>C</strong><small>Core programming concepts</small></div>
+        <div class="skill reveal"><div class="skill-icon">SQL</div><strong>SQL & Oracle</strong><small>Queries and relational databases</small></div>
+        <div class="skill reveal"><div class="skill-icon">Fl</div><strong>Flask</strong><small>Python web applications</small></div>
+        <div class="skill reveal"><div class="skill-icon">DB</div><strong>SQLite</strong><small>Lightweight database integration</small></div>
+        <div class="skill reveal"><div class="skill-icon">Git</div><strong>Git & GitHub</strong><small>Version control and collaboration</small></div>
+        <div class="skill reveal"><div class="skill-icon">AI</div><strong>AI & Machine Learning</strong><small>Academic focus and ongoing learning</small></div>
+      </div>
+    </div></section>
+    <section class="section" id="projects"><div class="container">
+      <div class="section-head reveal"><div class="kicker">03 / Selected work</div><h2>Projects with a purpose.</h2><p class="section-intro">A selection of projects where I’ve applied programming, security, and data-processing concepts. Explore the repositories for implementation details.</p></div>
+      <div class="projects">
+        <article class="project reveal"><div class="project-visual"><div class="project-symbol">AF</div></div><div class="project-content"><div class="project-top"><h3>AttendFlow TQM</h3><span class="tag">Web App</span></div><p>A Flask and SQLite attendance management system with role-based workflows, attendance tracking, reports, and CSV export.</p><div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">CRUD</span></div><div class="project-links"><a href="https://github.com/NeerajNoutiyal/Attendance-Management-System" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="https://attendance-management-system-2-xv50.onrender.com" target="_blank" rel="noreferrer">Live demo ↗</a></div></div></article>
+        <article class="project reveal"><div class="project-visual"><div class="project-symbol">{ }</div></div><div class="project-content"><div class="project-top"><h3>Secure Code Review System</h3><span class="tag">Cybersecurity</span></div><p>A project focused on reviewing source code for potential security vulnerabilities and encouraging safer coding practices.</p><div class="tags"><span class="tag">Python</span><span class="tag">Cybersecurity</span><span class="tag">Secure Coding</span></div><div class="project-links"><a href="https://github.com/NeerajNoutiyal/Secure-Code-Review-System" target="_blank" rel="noreferrer">GitHub repository ↗</a></div></div></article>
+        <article class="project reveal"><div class="project-visual"><div class="project-symbol">↗</div></div><div class="project-content"><div class="project-top"><h3>StreamForge</h3><span class="tag">Team Project</span></div><p>Contributed Python telemetry workers and event processing for a truck-monitoring pipeline using Kafka and monitoring tools.</p><div class="tags"><span class="tag">Python</span><span class="tag">Kafka</span><span class="tag">Prometheus</span><span class="tag">Event Processing</span></div><div class="project-links"><a href="https://github.com/Sharonsamuel77/Stream-forge" target="_blank" rel="noreferrer">Team repository ↗</a></div></div></article>
+        <article class="project reveal"><div class="project-visual"><div class="project-symbol">FIT</div></div><div class="project-content"><div class="project-top"><h3>FitAtHome</h3><span class="tag">Mobile App</span></div><p>A Flutter-based home workout app with exercise demonstrations, workout categories, progress tracking, and water tracking.</p><div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Android</span></div><div class="project-links"><span class="tag">Repository link to be added</span></div></div></article>
+      </div>
+    </div></section>
+    <section class="section" id="journey"><div class="container">
+      <div class="section-head reveal"><div class="kicker">04 / Education & experience</div><h2>The journey so far.</h2><p class="section-intro">Building a strong foundation through academic learning, internships, and practical projects.</p></div>
+      <div class="panel reveal"><div class="timeline">
+        <div class="timeline-item"><strong>B.Tech — Computer Science Engineering (AI & ML)</strong><span>Amrapali University · 2024–2028</span><p>Studying computer science with a focus on artificial intelligence and machine learning.</p></div>
+        <div class="timeline-item"><strong>Cybersecurity Internship — Navodita Infotech</strong><span>May 9 – June 9 · Project: Secure Code Review System</span><p>Worked on a project focused on code security review and secure coding concepts.</p></div>
+        <div class="timeline-item"><strong>Web Development Internship — Proxenix</strong><span>Internship experience</span><p>Gained practical exposure to web development concepts and implementation.</p></div>
+        <div class="timeline-item"><strong>Project-based learning</strong><span>Ongoing</span><p>Developing applications and collaborating on software projects to strengthen practical skills.</p></div>
+      </div></div>
+    </div></section>
+    <section class="section" id="contact"><div class="container"><div class="contact-box reveal"><div><div class="kicker">05 / Get in touch</div><h2>Have an opportunity<br>or an idea?</h2><p>I’m interested in connecting with developers, mentors, teams, and recruiters. Feel free to reach out through my professional profiles.</p></div><div class="hero-actions"><a class="btn" href="https://www.linkedin.com/in/neeraj-noutiyal-8302b12b2/" target="_blank" rel="noreferrer">Message on LinkedIn ↗</a><a class="btn secondary" href="https://github.com/NeerajNoutiyal" target="_blank" rel="noreferrer">View GitHub ↗</a></div></div></div></section>
+  </main>
+  <footer><div class="container footer-inner"><span>© <span id="year"></span> Neeraj Noutiyal. Built with curiosity and code.</span><span><a href="#home">Back to top ↑</a></span></div></footer>
+</div>
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const navlinks = document.getElementById('navlinks');
+menuBtn.addEventListener('click', () => {
+  const isOpen = navlinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(isOpen));
+  menuBtn.textContent = isOpen ? '✕' : '☰';
+});
+navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  navlinks.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  menuBtn.textContent = '☰';
+}));
+document.getElementById('year').textContent = new Date().getFullYear();
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!--sites-preview-theme:start-->
+<style data-sites-preview-theme>:root{--site-primary:#3a83f7 !important;--site-on-primary:#000000 !important}</style>
+<script type="application/json" data-sites-preview-theme>{"appearance":"custom","primary":"#3a83f7","secondary":null,"background":"#080d19","typography":"original","spacing":null,"roundness":1,"headingScale":null,"decorationOpacity":1}</script>
+<!--sites-preview-theme:end-->
+</body>
+</html>
